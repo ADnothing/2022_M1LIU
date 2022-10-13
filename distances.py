@@ -39,8 +39,8 @@ def galaxy_radius(logD25, V):
 
     Returns
     -------
-    R : float
-        The radius of the galaxy in kpc.
+    D : float
+        The diameter of the galaxy in kpc.
 
     """
     
@@ -49,7 +49,7 @@ def galaxy_radius(logD25, V):
     
     D = D_Hubble(V)
     
-    R = 0.5*D25*D*1e3
+    D = D25*D*1e3
     
     
-    return R
+    return D

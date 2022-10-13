@@ -54,7 +54,7 @@ def mass_stars(btc, d):
     return M_star
 
 
-def mass_tot(Vmax, R):
+def mass_tot(Vmax, D):
     """
     Compute the total mass of the galaxy.
 
@@ -62,8 +62,8 @@ def mass_tot(Vmax, R):
     ----------
     Vmax : float
         The maximum of the rotation speed of the galaxy in km/s.
-    R : float
-        Radius of the galaxy in kpc.
+    D : float
+        Diameter of the galaxy in kpc.
     
 
     Returns
@@ -74,6 +74,6 @@ def mass_tot(Vmax, R):
     
     cste = 2.326e5
     
-    M_tot = cste*(Vmax**2)*0.6*R
+    M_tot = cste*(Vmax**2)*0.6*D
     
     return M_tot

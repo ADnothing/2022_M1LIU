@@ -19,11 +19,11 @@ def compu_ds(V, logD25):
     
     return d, R
 
-def compu_masses(d, FHI, Vmax, R):
+def compu_masses(d, FHI, Vmax, D):
     
     mHI = mass_HI(d, FHI)
     mstars = mass_stars(btc, d)
-    mtot = mass_tot(Vmax, R)
+    mtot = mass_tot(Vmax, D)
     
     return mHI, mstars, mtot
 
@@ -39,13 +39,13 @@ def printing(Vrad, FHI, w20, w50, incl, logD25, rms, SNR):
     V, Vmax = compu_speeds(Vrad, w20, incl)
     print("V = %f km/s\nVmax = %f km/s"%(V, Vmax))
     
-    d, R = compu_ds(V, logD25)
-    print("d = %f Mpc\nR = %f kpc"%(d, R))
+    d, D = compu_ds(V, logD25)
+    print("d = %f Mpc\nD = %f kpc"%(d, D))
     
     MB = btc - 5*np.log10(d) - 5
     print("MB = %f mag"%(MB))
     
-    mHI, mstars, mtot = compu_masses(d, FHI, Vmax, R)
+    mHI, mstars, mtot = compu_masses(d, FHI, Vmax, D)
     print("MHI = %f Msun\nMstars = %f Msun\nMtot = %f Msun"%(mHI, mstars, mtot))
     
     S_R = S_N(w50, FHI, rms)
