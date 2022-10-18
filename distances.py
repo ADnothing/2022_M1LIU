@@ -26,7 +26,7 @@ def D_Hubble(V, h=H0):
 #def Tully_fisher():
 
 
-def galaxy_radius(logD25, V):
+def galaxy_diameter(logD25, V):
     """
     Compute the radius of a galaxy.
 
@@ -44,12 +44,10 @@ def galaxy_radius(logD25, V):
 
     """
     
-    D25 = 10**(logR25 + 1)      #arcsec
-    D25_rad = D25*np.pi/648000  #rad
+    D25 = 10**(logD25 + 1)      #arcsec
+    D25_rad = D25*(np.pi/648000)  #rad
     
-    D = D_Hubble(V)
-    
-    D = D25*D*1e3
+    D = D25_rad*D_Hubble(V)*1e3
     
     
     return D

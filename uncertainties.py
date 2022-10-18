@@ -1,5 +1,4 @@
 from lib_n_cste import *
-from sig_noise import *
 from speeds import *
 from distances import *
 
@@ -25,7 +24,7 @@ def std_FHI(w20, rms, R=spectral_R):
 
     """
     
-    return 2*((1.2*w20/R)**0.5)*R*rms
+    return 2*((1.2*w20/R)**0.5)*R*rms*1e-3
 
 #=====Velocities=====
 
@@ -52,8 +51,6 @@ def std_Optical_speed(w20, w50, FHI, SNR, rms):
         Standart deviation of the optical speed in km/s.
 
     """
-    
-    snr = SNR(w50, FHI, rms)
     
     sigma_cz = 1.5*((w20 - w50)/SNR)
     

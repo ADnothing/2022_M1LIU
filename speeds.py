@@ -17,7 +17,7 @@ def Optical_speed(Vrad):
     """
     
     a = 1/Vrad
-    b = 1/(c_light*10**-3) #here c_light is converted in km/s
+    b = 1/(c_light)
     
     cz = 1/(a-b)
     

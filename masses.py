@@ -46,7 +46,7 @@ def mass_stars(btc, d):
     """
     
 
-    abs_mag = btc - 5*np.log10(d) - 5
+    abs_mag = btc - 5*np.log10(d*1e5)
     
     L = 10**(0.4*(abs_mag_sun - abs_mag))
     M_star = L*4

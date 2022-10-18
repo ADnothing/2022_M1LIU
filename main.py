@@ -15,11 +15,11 @@ def compu_speeds(Vrad, w20, incl):
 def compu_ds(V, logD25):
     
     d = D_Hubble(V)
-    R = galaxy_radius(logD25, V)
+    R = galaxy_diameter(logD25, V)
     
     return d, R
 
-def compu_masses(d, FHI, Vmax, D):
+def compu_masses(d, FHI, Vmax, D, btc):
     
     mHI = mass_HI(d, FHI)
     mstars = mass_stars(btc, d)
@@ -34,7 +34,7 @@ def compu_sigmas(w20, w50, FHI, SNR, rms):
     
     return stdf, stdV
 
-def printing(Vrad, FHI, w20, w50, incl, logD25, rms, SNR):
+def printing(Vrad, FHI, w20, w50, incl, logD25, rms, SNR, btc):
     
     V, Vmax = compu_speeds(Vrad, w20, incl)
     print("V = %f km/s\nVmax = %f km/s"%(V, Vmax))
@@ -42,10 +42,10 @@ def printing(Vrad, FHI, w20, w50, incl, logD25, rms, SNR):
     d, D = compu_ds(V, logD25)
     print("d = %f Mpc\nD = %f kpc"%(d, D))
     
-    MB = btc - 5*np.log10(d) - 5
+    MB = btc - 5*np.log10(d*1e5)
     print("MB = %f mag"%(MB))
     
-    mHI, mstars, mtot = compu_masses(d, FHI, Vmax, D)
+    mHI, mstars, mtot = compu_masses(d, FHI, Vmax, D, btc)
     print("MHI = %f Msun\nMstars = %f Msun\nMtot = %f Msun"%(mHI, mstars, mtot))
     
     S_R = S_N(w50, FHI, rms)
