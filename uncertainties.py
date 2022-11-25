@@ -1,5 +1,5 @@
 from lib_n_cste import *
-from speeds import *
+from velocities import *
 from distances import *
 
 #=====Flux===========

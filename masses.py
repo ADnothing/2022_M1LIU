@@ -1,6 +1,7 @@
 from lib_n_cste import *
-from speeds import *
+from velocities import *
 from distances import *
+from mag import *
 
 
 def mass_HI(d, FHI):
@@ -27,14 +28,14 @@ def mass_HI(d, FHI):
     return mhi
 
 
-def mass_stars(btc, d):
+def mass_stars(abs_mag, d):
     """
     Compute the mass of the stars inside the galaxy.
 
     Parameters
     ----------
-    btc : float
-        Bolometric apparent magnitude of the galaxy in mag.
+    Lb : float
+        Absolute magnitude of the galaxy in the blue band in mag.
     d : float
         The distance of the galaxy in Mpc.
 
@@ -45,16 +46,13 @@ def mass_stars(btc, d):
 
     """
     
-
-    abs_mag = btc - 5*np.log10(d*1e5)
-    
     L = 10**(0.4*(abs_mag_sun - abs_mag))
-    M_star = L*4
+    M_star = 1.4*L
     
     return M_star
 
 
-def mass_tot(Vmax, D):
+def mass_tot(Vmax, D, r_param):
     """
     Compute the total mass of the galaxy.
 
@@ -64,6 +62,8 @@ def mass_tot(Vmax, D):
         The maximum of the rotation speed of the galaxy in km/s.
     D : float
         Diameter of the galaxy in kpc.
+    r_param
+        Proportion of the radius taken into account (HSB or LSB galaxy)
     
 
     Returns
@@ -74,6 +74,32 @@ def mass_tot(Vmax, D):
     
     cste = 2.326e5
     
-    M_tot = cste*(Vmax**2)*0.6*D
+    M_tot = cste*(Vmax**2)*r_param*(D/2)
     
     return M_tot
+
+
+def mass_barr(mhi, M_star):
+    """
+    Compute the baryonic mass of the galaxy
+    considering no contribution from dusts and molecular gas
+
+    Parameters
+    ----------
+    mhi : float
+        The mass of the neutral gaz in the galaxy in solar mass.
+    M_star : float
+        The mass of the star inside the galaxy in solar mass.
+
+    Returns
+    -------
+    M_bar : float
+        Baryonic mass of the galaxy.
+
+    """
+    
+    M_gas = 1.4*mhi
+    M_bar = M_gas + M_star
+    
+    return M_bar
+
