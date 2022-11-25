@@ -20,6 +20,6 @@ if __name__ == "__main__":
     else:
         r_param = 1.6
     
-    V, stdV, stdf, d, log_Lb, log_mstar, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM = calc_all(Vrad, FHI, w20, w50, incl, logD25, rms, SNR, bt, Av, r_param)
+    V, stdV, stdf, d, log_Lb, log_mstars, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM = calc_all(Vrad, FHI, w20, w50, incl, logD25, rms, SNR, bt, Av, r_param)
    
-    writing(Name, rms, SNR, V, stdV, w50, w20, FHI, stdf, d, log_Lb, log_mstar, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM)
+    writing(Name, rms, SNR, V, stdV, w50, w20, FHI, stdf, d, log_Lb, log_mstars, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM)

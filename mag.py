@@ -37,11 +37,31 @@ def MB(btc, d):
 
     Returns
     -------
-    Lb : float
+    Mb : float
         Absolute magnitude of the galaxy in the blue band in mag.
 
     """
     
-    Lb = btc - 5*np.log10(d*1000000) + 5
+    Mb = btc - 5*np.log10(d*1000000) + 5
     
-    return Lb
+    return Mb
+    
+def logLB(Mb):
+	"""
+    Compute the log10 of the luminance of the galaxy in the blue band.
+
+    Parameters
+    ----------
+    Mb : float
+        Absolute magnitude of the galaxy in the blue band in mag.
+
+    Returns
+    -------
+    log_Lb : float
+        log10 of the luminance of the galaxy in the blue band.
+
+    """
+
+	log_Lb = 0.4*(abs_mag_sun - Mb)
+	
+	return log_Lb

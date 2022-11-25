@@ -28,14 +28,14 @@ def mass_HI(d, FHI):
     return mhi
 
 
-def mass_stars(abs_mag, d):
+def mass_stars(log_Lb, d):
     """
     Compute the mass of the stars inside the galaxy.
 
     Parameters
     ----------
-    Lb : float
-        Absolute magnitude of the galaxy in the blue band in mag.
+    log_Lb : float
+        log10 of the luminance of the galaxy in the blue band in mag.
     d : float
         The distance of the galaxy in Mpc.
 
@@ -46,7 +46,7 @@ def mass_stars(abs_mag, d):
 
     """
     
-    L = 10**(0.4*(abs_mag_sun - abs_mag))
+    L = 10**log_Lb
     M_star = 1.4*L
     
     return M_star

@@ -22,14 +22,15 @@ def compu_ds(V, logD25):
 def compu_mag(bt, Av, d):
     
     btc = mag_btc(bt, Av)
-    Lb = MB(btc, d)
+    Mb = MB(btc, d)
+    log_Lb = logLB(Mb)
     
-    return Lb
+    return log_Lb
 
-def compu_masses(d, FHI, Vmax, D, Lb, r_param):
+def compu_masses(d, FHI, Vmax, D, log_Lb, r_param):
     
     mHI = mass_HI(d, FHI)
-    mstars = mass_stars(Lb, d)
+    mstars = mass_stars(log_Lb, d)
     mtot = mass_tot(Vmax, D, r_param)
     mbar = mass_barr(mHI, mstars)
     
@@ -46,11 +47,10 @@ def calc_all(Vrad, FHI, w20, w50, incl, logD25, rms, SNR, bt, Av, r_param):
     
     V, Vmax = compu_speeds(Vrad, w20, incl) 
     d, D = compu_ds(V, logD25)
-    Lb = compu_mag(bt, Av, d)
-    mHI, mstars, mtot, mbar = compu_masses(d, FHI, Vmax, D, Lb, r_param)
+    log_Lb = compu_mag(bt, Av, d)
+    mHI, mstars, mtot, mbar = compu_masses(d, FHI, Vmax, D, log_Lb, r_param)
     stdf, stdV = compu_sigmas(w20, w50, FHI, SNR, rms)
     
-    log_Lb = np.log10(Lb)
     log_mHI = np.log10(mHI)
     log_mstars = np.log10(mstars)
     log_mtot = np.log10(mtot)
@@ -58,13 +58,13 @@ def calc_all(Vrad, FHI, w20, w50, incl, logD25, rms, SNR, bt, Av, r_param):
     ratio_tot_bar = mtot/mbar
     ratio_DM = (mtot-mbar)/mtot
     
-    return V, stdV, stdf, d, log_Lb, log_mstar, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM
+    return V, stdV, stdf, d, log_Lb, log_mstars, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM
     
 
-def writing(Name, rms, SNR, V, stdV, w50, w20, FHI, stdf, d, log_Lb, log_mstar, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM, file="./results.csv"):
+def writing(Name, rms, SNR, V, stdV, w50, w20, FHI, stdf, d, log_Lb, log_mstars, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM, file="./results.csv"):
 
-        f = open(file, '+')
+        f = open(file, 'a')
         writer = csv.writer(f)
-        writer.writerow([Name, rms, SNR, V, stdV, w50, w20, FHI, stdf, d, log_Lb, log_mstar, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM])
+        writer.writerow([Name, rms, SNR, V, stdV, w50, w20, FHI, stdf, d, log_Lb, log_mstars, log_mHI, log_mbar, Vmax, log_mtot, ratio_tot_bar, ratio_DM])
         f.close()
         
