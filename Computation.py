@@ -1,4 +1,4 @@
-from main import *
+from parameter_estimation import *
 
 if __name__ == "__main__":
     
