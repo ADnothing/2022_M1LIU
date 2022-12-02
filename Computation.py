@@ -1,4 +1,6 @@
-from parameter_estimation import *
+import sys
+sys.path.insert(0, './parameter_estimation')
+from main import *
 
 if __name__ == "__main__":
     
