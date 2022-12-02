@@ -8,7 +8,7 @@ if __name__ == "__main__":
     w20 = float(input("w20 km/s : "))
     w50 = float(input("w50 km/s : "))
     incl = float(input("incl rad : "))
-    logD25 = float(input("logD25 log(0.1 \") : "))
+    logD25 = float(input("logD25 log(0.1 \') : "))
     rms = float(input("rms mJy : "))
     SNR = float(input("SNR : "))
     bt = float(input("BT mag : "))
